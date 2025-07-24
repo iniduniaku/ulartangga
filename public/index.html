@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ular Tangga Multiplayer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Menu Screen -->
+    <div id="menu" class="screen">
+        <div class="container">
+            <h1>🐍 Ular Tangga 🪜</h1>
+            <div class="menu-form">
+                <input type="text" id="playerName" placeholder="Masukkan nama Anda" maxlength="12" required>
+                <button id="joinGameBtn">Bergabung</button>
+            </div>
+            <div class="game-info">
+                <p>👥 2-4 Pemain</p>
+                <p>🎯 Capai kotak 100 untuk menang!</p>
+                <p>💬 Chat real-time dengan pemain lain</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Waiting Screen -->
+    <div id="waiting" class="screen hidden">
+        <div class="container">
+            <h2>Menunggu Pemain...</h2>
+            <div id="playersList" class="players-list"></div>
+            <div class="loader"></div>
+            <p>Game akan dimulai otomatis ketika ada 2+ pemain</p>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game" class="screen hidden">
+        <div class="game-header">
+            <div id="gameInfo" class="game-info-bar">
+                <div id="currentTurn" class="current-turn">Giliran: <span id="currentPlayerName">-</span></div>
+                <div id="playersInfo" class="players-info"></div>
+            </div>
+        </div>
+
+        <div class="game-content">
+            <div id="gameBoard" class="game-board"></div>
+            
+            <div class="game-controls">
+                <div id="diceSection" class="dice-section">
+                    <div id="diceDisplay" class="dice">?</div>
+                    <button id="rollDiceBtn" class="roll-btn" disabled>Lempar Dadu</button>
+                </div>
+                
+                <div id="gameMessage" class="game-message"></div>
+            </div>
+        </div>
+
+        <!-- Chat Section -->
+        <div id="chatContainer" class="chat-container">
+            <div id="chatToggle" class="chat-toggle">
+                <span id="chatIcon">💬</span>
+                <span id="chatNotification" class="chat-notification hidden">1</span>
+            </div>
+            
+            <div id="chatBox" class="chat-box hidden">
+                <div class="chat-header">
+                    <span>💬 Chat</span>
+                    <button id="closeChatBtn" class="close-chat-btn">✕</button>
+                </div>
+                
+                <div id="chatMessages" class="chat-messages"></div>
+                
+                <div class="chat-input-container">
+                    <div class="emoji-buttons">
+                        <button class="emoji-btn" data-emoji="😀">😀</button>
+                        <button class="emoji-btn" data-emoji="😍">😍</button>
+                        <button class="emoji-btn" data-emoji="😭">😭</button>
+                        <button class="emoji-btn" data-emoji="🎉">🎉</button>
+                        <button class="emoji-btn" data-emoji="👍">👍</button>
+                        <button class="emoji-btn" data-emoji="❤️">❤️</button>
+                    </div>
+                    <div class="chat-input-row">
+                        <input type="text" id="chatInput" placeholder="Ketik pesan..." maxlength="100">
+                        <button id="sendChatBtn">Kirim</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Win Screen -->
+    <div id="winScreen" class="screen hidden">
+        <div class="container">
+            <h1>🎉 Selamat! 🎉</h1>
+            <h2 id="winnerName">-</h2>
+            <p>telah memenangkan permainan!</p>
+            <button id="playAgainBtn">Main Lagi</button>
+        </div>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
